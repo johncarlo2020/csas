@@ -52,19 +52,23 @@
                                                 <div class="row  p-3 ">
                                                             <div class="col-lg-4 col-12 border p-2 text-center">
                                                                 <label for="cor" class="col-form-label text-md-right mb-1 h3 fw-bold "> Certificate of Registrar</label>
-                                                                <center><img class="img-fluid rounded mx-auto d-block border p-2 " id="blah" style="max-height: 200px;" height="150px" src="{{ asset('images/pdf.webp') }}" alt="Image Unavailable"></center>
+                                                                <center><img class="img-fluid rounded mx-auto d-block border p-2 " id="blah" style="max-height: 200px;" height="150px" src="
+                                                                <?php if (getimagesize($file->cor) == false) {echo(asset('images/pdf.webp'));}else{echo(asset($file->cor));}?>
+                                                                " alt="Image Unavailable"></center>
                                                                 <a class="btn btn-outline-primary rounded-0 mt-3 " href="{{ asset($file->cor) }}" download>Click here to download file</a>
                                                             </div>
 
                                                             <div class="col-lg-4 col-12  border  p-2 text-center">
                                                                 <label for="cog" class="col-form-label text-md-right mb-1 h3 fw-bold">Certificate of Grades</label>
-                                                                <center><img class="img-fluid rounded mx-auto d-block  border p-2 " id="cogimage" style="max-height: 200px;" height="150px" src="{{ asset('images/pdf.webp') }}" alt="Image Unavailable"></center>
+                                                                <center><img class="img-fluid rounded mx-auto d-block  border p-2 " id="cogimage" style="max-height: 200px;" height="150px" src="
+                                                                <?php if (getimagesize($file->cog) == false) {echo(asset('images/pdf.webp'));}else{echo(asset($file->cog));}?>
+                                                                " alt="Image Unavailable"></center>
                                                                 <a class="btn btn-outline-primary rounded-0 mt-3 " href="{{ asset($file->cog) }}" download>Click here to download file</a>
                                                             </div>
                                                             <div class="col-lg-4 col-12  border p-2 text-center">
                                                                 <label for="id" class="col-form-label text-md-right mb-1 h3 fw-bold">ID</label>
                                                                 <center><img class="img-fluid rounded mx-auto d-block  border p-2 " id="idimage" style="max-height: 200px;" height="150px" src="
-                                                        <?php if (getimagesize($file->id_) == false) {echo(asset('images/pdf.webp'));}else{echo(asset($file->id_));}?>
+                                                                    <?php if (getimagesize($file->id_) == false) {echo(asset('images/pdf.webp'));}else{echo(asset($file->id_));}?>
                                                                 " alt="Image Unavailable"></center>
                                                                 <a class="btn btn-outline-primary rounded-0 mt-3" download href="{{ asset($file->id_) }}" >Click here to download file</a>
                                                             </div>

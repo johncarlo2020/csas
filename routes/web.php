@@ -38,6 +38,8 @@ Route::get('/coordinator/declined', 'App\Http\Controllers\coordinator@index')->n
 Route::get('/coordinator/scholars', 'App\Http\Controllers\coordinator@scholars')->name('coordinator.scholars')->middleware('user_type');
 Route::get('/coordinator/examiners', 'App\Http\Controllers\coordinator@examiners')->name('coordinator.examiners')->middleware('user_type');
 
+Route::post('/coordinator/delete', 'App\Http\Controllers\coordinator@delete')->name('coordinator.delete')->middleware('user_type');
+Route::post('/coordinator/deletes', 'App\Http\Controllers\coordinator@deletes')->name('coordinator.deletes')->middleware('user_type');
 Route::get('/coordinator/accept/{id}', 'App\Http\Controllers\coordinator@accepted')->name('coordinator.accepted')->middleware('user_type');
 Route::get('/coordinator/accepting/{id}', 'App\Http\Controllers\coordinator@accepting')->name('coordinator.accepting')->middleware('user_type');
 Route::get('/coordinator/reject/{id}', 'App\Http\Controllers\coordinator@rejected')->name('coordinator.rejected')->middleware('user_type');

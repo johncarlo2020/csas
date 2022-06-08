@@ -300,8 +300,22 @@ class coordinator extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function delete(Request $request)
     {
-        //
+        $id = $request->id;
+        $name = $request->name;
+        $users = DB::select("delete from users where id=$id ;");
+        $stab = DB::select("delete FROM exams where id=$id;");
+        toastr()->success($name . ' Deleted Successfully');
+        return redirect('coordinator/declined');
+    }
+    public function deletes(Request $request)
+    {
+        $id = $request->id;
+        $name = $request->name;
+        $users = DB::select("delete from users where id=$id ;");
+        $stab = DB::select("delete FROM exams where id=$id;");
+        toastr()->success($name . ' Deleted Successfully');
+        return redirect('coordinator/scholars');
     }
 }

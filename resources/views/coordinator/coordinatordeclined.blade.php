@@ -38,7 +38,31 @@
                                 <td>{{$user->school_name}}</td>
                                 <td>
                                     <button id="{{$user->id}}" first_name="{{$user->first_name}}" last_name="{{$user->last_name}}" middle_name="{{$user->middle_name}}" suffix="{{$user->suffix}}" address="{{$user->address}}" age="{{$user->age}}" gender="{{$user->gender}}" birth_date="{{$user->birth_date}}" course="{{$user->course}}" school_name="{{$user->school_name}}" school_address="{{$user->school_address}}" email="{{$user->email}}" income="{{$user->income}}" class="details btn btn-primary" data-bs-toggle="modal" data-bs-target="#detailed">Detailed Info</button>
-                                    <!-- <button class="btn btn-outline-primary">View Files</button> -->
+                                    <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#delete{{$user->id}}">Delete</button>
+                                    <!-- delete -->
+                                    <div class="modal fade" id="delete{{$user->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                      <div class="modal-dialog modal-dialog-centered">
+                                        <div class="modal-content">
+                                          <div class="modal-header">
+                                            <h5 class="text-danger modal-title " id="exampleModalLabel">Delete</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                          </div>
+                                          <div class="modal-body">
+                                            <form action="{{ route('coordinator.delete') }}" method="post">
+                                              @csrf 
+                                              @method('post')
+                                              <input type="" name="id"  value="{{$user->id}}" hidden>
+                                              <input type="" name="name"  value="{{$user->first_name}} {{$user->middle_name}} {{$user->last_name}}" hidden>
+                                              <h5>Do you want to delete <b>{{$user->first_name}} {{$user->middle_name}} {{$user->last_name}}</b> ?</h5>
+                                              </div>
+                                              <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+                                                <button type="submit" class="btn btn-danger">Yes</button>
+                                              </form>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
                                 </td>
                             </tr>
                             @endforeach
@@ -49,6 +73,7 @@
         </div>
     </div>
 </div>
+
 <!-- detailed -->
 <div class="modal fade" id="detailed" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">

@@ -9,11 +9,11 @@
     <div class="row justify-content-center">
         <div class="col-md-12">
             <div class="row">
-                <div class="col d-none">
-                    <a href="{{ route('coordinator.home') }}" class="btn btn-outline-primary rounded-0">New Applicants</a>
-                    <a href="{{ route('coordinator.scholars') }}" class="btn btn-outline-primary  rounded-0">Examiners</a>
+                <div class="col">
+                    <!-- <a href="{{ route('coordinator.home') }}" class="btn btn-outline-primary rounded-0">New Applicants</a>
+                    <a href="{{ route('coordinator.examiners') }}" class="btn btn-outline-primary  rounded-0">Examiners</a>
                     <a href="{{ route('coordinator.scholars') }}" class="btn btn-primary rounded-0">Scholars</a>
-                    <a href="{{ route('coordinator.declined') }}" class="btn btn-outline-primary rounded-0">Declined Applicants</a>
+                    <a href="{{ route('coordinator.declined') }}" class="btn btn-outline-primary rounded-0">Declined Applicants</a> -->
 
                 </div>
             </div>
@@ -36,35 +36,42 @@
                                 <td>{{$user->birth_date}}</td>
                                 <td>{{$user->school_name}}</td>
                                 <td>
-                                    <button first_name="{{$user->first_name}}" last_name="{{$user->last_name}}" middle_name="{{$user->middle_name}}" suffix="{{$user->suffix}}" address="{{$user->address}}" age="{{$user->age}}" gender="{{$user->gender}}" birth_date="{{$user->birth_date}}" course="{{$user->course}}" school_name="{{$user->school_name}}" school_address="{{$user->school_address}}" email="{{$user->first_name}}" income="{{$user->income}}" class="details btn btn-primary" data-bs-toggle="modal" data-bs-target="#detailed">Detailed Info</button>
+                                    <button first_name="{{$user->first_name}}" last_name="{{$user->last_name}}" middle_name="{{$user->middle_name}}" suffix="{{$user->suffix}}" address="{{$user->address}}" age="{{$user->age}}" gender="{{$user->gender}}" birth_date="{{$user->birth_date}}" course="{{$user->course}}" school_name="{{$user->school_name}}" school_address="{{$user->school_address}}" email="{{$user->email}}" income="{{$user->income}}" class="details btn btn-primary" data-bs-toggle="modal" data-bs-target="#detailed">Detailed Info</button>
                                     @foreach($files as $file)
                                         @if($user->id == $file->id)
-                                            <button  class="files btn btn-outline-primary"  data-bs-toggle="modal" data-bs-target="#files">View Files</button>
+                                            <button  class="files btn btn-outline-primary"  data-bs-toggle="modal" data-bs-target=".files{{$file->id}}">View Files</button>
+
                                        <!-- files -->
-                                            <div class="modal fade" id="files" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <div class="files{{$file->id}} modal fade"  tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                             <div class="modal-dialog modal-xl">
                                                 <div class="modal-content">
                                                 <div class="modal-header">
                                                     <h5 class="modal-title" id="exampleModalLabel">Uploaded Files</h5>
-                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                    <button type="button" idz="" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                 </div>
                                                 <div class="modal-body">
                                                 <div class="row  p-3 ">
                                                             <div class="col-lg-4 col-12 border p-2 text-center">
                                                                 <label for="cor" class="col-form-label text-md-right mb-1 h3 fw-bold "> Certificate of Registrar</label>
-                                                                <center><img class="img-fluid rounded mx-auto d-block border p-2 " id="blah" style="max-height: 200px;" height="150px" src='{{ asset('images/pdf.webp') }}' alt="Image Unavailable"></center>
+                                                                <center><img class="img-fluid rounded mx-auto d-block border p-2 " id="blah" style="max-height: 200px;" height="150px" src="
+                                                                <?php if (getimagesize($file->cor) == false) {echo(asset('images/pdf.webp'));}else{echo(asset($file->cor));}?>
+                                                                " alt="Image Unavailable"></center>
                                                                 <a class="btn btn-outline-primary rounded-0 mt-3 " href="{{ asset($file->cor) }}" download>Click here to download file</a>
                                                             </div>
 
                                                             <div class="col-lg-4 col-12  border  p-2 text-center">
                                                                 <label for="cog" class="col-form-label text-md-right mb-1 h3 fw-bold">Certificate of Grades</label>
-                                                                <center><img class="img-fluid rounded mx-auto d-block  border p-2 " id="cogimage" style="max-height: 200px;" height="150px" src='{{ asset('images/pdf.webp') }}' alt="Image Unavailable"></center>
+                                                                <center><img class="img-fluid rounded mx-auto d-block  border p-2 " id="cogimage" style="max-height: 200px;" height="150px" src="
+                                                                <?php if (getimagesize($file->cog) == false) {echo(asset('images/pdf.webp'));}else{echo(asset($file->cog));}?>
+                                                                " alt="Image Unavailable"></center>
                                                                 <a class="btn btn-outline-primary rounded-0 mt-3 " href="{{ asset($file->cog) }}" download>Click here to download file</a>
                                                             </div>
-                                                            <div class="col-lg-4 col-12  border  p-2 text-center">
+                                                            <div class="col-lg-4 col-12  border p-2 text-center">
                                                                 <label for="id" class="col-form-label text-md-right mb-1 h3 fw-bold">ID</label>
-                                                                <center><img class="img-fluid rounded mx-auto d-block  border p-2 " id="idimage" style="max-height: 200px;" height="150px" src='{{ asset($file->id_) }}' alt="Image Unavailable"></center>
-                                                                <a class="btn btn-outline-primary rounded-0 mt-3 "  href="{{ asset($file->id_) }}" download>Click here to download file</a>
+                                                                <center><img class="img-fluid rounded mx-auto d-block  border p-2 " id="idimage" style="max-height: 200px;" height="150px" src="
+                                                                    <?php if (getimagesize($file->id_) == false) {echo(asset('images/pdf.webp'));}else{echo(asset($file->id_));}?>
+                                                                " alt="Image Unavailable"></center>
+                                                                <a class="btn btn-outline-primary rounded-0 mt-3" download href="{{ asset($file->id_) }}" >Click here to download file</a>
                                                             </div>
                                                         </div>
                                                 </div>
@@ -76,6 +83,7 @@
                                             </div>
                                             @endif
                                     @endforeach
+
                                 </td>
                             </tr>
                             @endforeach
@@ -101,15 +109,16 @@
             <p><b>Age : </b><span class="age"></span></p>
             <p><b>Gender : </b><span class="gender"></span></p>
             <p><b>Birth Date : </b><span class="birth_date"></span></p>
-            <p><b>Email : </b>  <span class="email"></span></p>
+            <p><b>Email : </b> <span class="email"></span></p>
             <p class="h6  fw-bold legend-details">School Information</p>
             <p><b>Course : </b><span class="course"></span></p>
             <!-- <p><b>Year : </b>           <span class=""></span></p> -->
             <p><b>School : </b> <span class="school_name"></span></p>
             <p><b>School Address : </b><span class="school_address"></span></p>
             <p class="h6  fw-bold legend-details">Montly income</p>
-
             <p><b>Amount : </b><span class="income"></span></p>
+
+
           </div>
         <div class="modal-footer d-none ">
          <button type="button" class="btn btn btn-outlineprimary">Accept</button>
@@ -168,7 +177,6 @@ $('.details').on('click', function(e) {
       $(".school_address").text( school_address).change();
       $(".email").text( email).change();
       $(".income").text( income).change();
-
 });
 
 $(document).ready(function() {

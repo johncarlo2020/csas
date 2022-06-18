@@ -24,7 +24,7 @@
                         <thead>
                             <tr>
                                 <th><center>Fullname</center></th>
-                                <th><center>Birth Date</center></th>
+                                <th><center>Address</center></th>
                                 <th><center>School</center></th>
                                 <th><center>Action</center></th>
                             </tr>
@@ -33,7 +33,7 @@
                             @foreach($users as $user)
                             <tr>
                                 <td>{{$user->first_name}} {{$user->middle_name}} {{$user->last_name}}</td>
-                                <td>{{$user->birth_date}}</td>
+                                <td>{{$user->Address}}</td>
                                 <td>{{$user->school_name}}</td>
                                 <td>
                                     <button first_name="{{$user->first_name}}" last_name="{{$user->last_name}}" middle_name="{{$user->middle_name}}" suffix="{{$user->suffix}}" address="{{$user->address}}" age="{{$user->age}}" gender="{{$user->gender}}" birth_date="{{$user->birth_date}}" course="{{$user->course}}" school_name="{{$user->school_name}}" school_address="{{$user->school_address}}" email="{{$user->email}}" income="{{$user->income}}" class="details btn btn-primary" data-bs-toggle="modal" data-bs-target="#detailed">Detailed Info</button>

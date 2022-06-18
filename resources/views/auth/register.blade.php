@@ -24,9 +24,9 @@
                         <div class="border-bottom "><h5>Full Name</h5></div>
                         <div class="row">
                             <div class="col-6">
-                                <label for="lname" class="col-md-4 col-form-label text-md-start">{{ __(' Last Name') }}</label>
+                                <label for="lname" class="col-form-label text-md-start">{{ __(' Last Name') }}<span class="text-danger"> *</span></label>
                                 <div class="">
-                                    <input id="lname" type="text" class="form-control @error('lname') is-invalid @enderror" name="lname" value="{{ old('lname') }}" required autocomplete="lname" autofocus>
+                                    <input onkeydown="return /[a-z]/i.test(event.key)" id="lname" type="text" class="form-control @error('lname') is-invalid @enderror" name="lname" value="{{ old('lname') }}" required autocomplete="lname" autofocus>
                                     @error('lname')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
@@ -36,10 +36,10 @@
                             </div>
 
                             <div class="col-6">
-                                <label for="fname" class="col-md-4 col-form-label text-md-start">{{ __(' First Name') }}</label>
+                                <label for="fname" class=" col-form-label text-md-start">{{ __(' First Name') }}<span class="text-danger"> *</span></label>
 
                                 <div class="">
-                                    <input id="fname" type="text" class="form-control @error('fname') is-invalid @enderror" name="fname" value="{{ old('fname') }}" required autocomplete="fname" autofocus>
+                                    <input onkeydown="return /[a-z]/i.test(event.key)" id="fname" type="text" class="form-control @error('fname') is-invalid @enderror" name="fname" value="{{ old('fname') }}" required autocomplete="fname" autofocus>
 
                                     @error('name')
                                         <span class="invalid-feedback" role="alert">
@@ -49,11 +49,10 @@
                                 </div>
                             </div>
                             <div class="col-6">
-                                <label for="mname" class="col-md-4 col-form-label text-md-start">{{ __(' Middle Name') }}</label>
+                                <label for="mname" class=" col-form-label text-md-start">{{ __(' Middle Name') }}<span class="text-danger"> *</span></label>
 
                                 <div class="">
-                                    <input id="mname" type="text" class="form-control @error('mname') is-invalid @enderror" name="mname" value="{{ old('mname') }}" >
-
+                                    <input onkeydown="return /[a-z]/i.test(event.key)" id="mname" type="text" class="form-control @error('mname') is-invalid @enderror" name="mname" value="{{ old('mname') }}" >
                                     @error('mname')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
@@ -62,7 +61,7 @@
                                 </div>
                             </div>
                             <div class="col-6">
-                                <label for="suffix" class="col-md-4 col-form-label text-md-start">{{ __('Suffix') }}</label>
+                                <label for="suffix" class=" col-form-label text-md-start">{{ __('Suffix') }}</label>
 
                                 <div class="">
                                     <input id="suffix" type="text" class="form-control @error('suffix') is-invalid @enderror" name="suffix" value="{{ old('suffix') }}" >
@@ -85,7 +84,7 @@
                         </div>
                         <div class="row">
                             <div class="col-3 mb-3">
-                                <label for="gender" class="col-md-4 col-form-label text-md-start">{{ __('Gender') }}</label>
+                                <label for="gender" class=" col-form-label text-md-start">{{ __('Gender') }}<span class="text-danger"> *</span></label>
 
                                 <div class="">
                                 <select id="gender" name="gender" class="form-control @error('gender') is-invalid @enderror" aria-label="Default select example" required autofocus>
@@ -103,7 +102,7 @@
                                 </div>
                             </div>
                             <div class="col-6 mb-3">
-                                <label for="bday" class="col-md-4 col-form-label text-md-start">{{ __('Birth Date') }}</label>
+                                <label for="bday" class=" col-form-label text-md-start">{{ __('Birth Date') }}<span class="text-danger"> *</span></label>
 
                                 <div class="">
                                     <input id="bday" type="date" class="form-control @error('bday') is-invalid @enderror" name="bday" value="{{ old('bday') }}" required autocomplete="bday">
@@ -125,7 +124,7 @@
                             <h5>Address</h5>
                         </div>
                         <div class="col-6">
-                            <label for="region" class="col-md-4 col-form-label text-md-start">{{ __('Region') }}</label>
+                            <label for="region" class="col-form-label text-md-start">{{ __('Region') }}<span class="text-danger"> *</span></label>
 
                             <div class="">
                             <select id="region" name="region" class="form-control form-select @error('region') is-invalid @enderror" aria-label="Default select example" required autocomplete="region" autofocus>
@@ -142,7 +141,7 @@
                             </div>
                         </div>
                         <div id="provSelect" class="col-6 mb-3 d-none">
-                            <label for="province" class="col-md-4 col-form-label text-md-start">{{ __('Province') }}</label>
+                            <label for="province" class="col-form-label text-md-start">{{ __('Province') }}<span class="text-danger"> *</span></label>
 
                             <div class="col-md-6">
                             <select id="province" name="province" class="form-control form-select @error('province') is-invalid @enderror" aria-label="Default select example" required autocomplete="region" autofocus>
@@ -160,7 +159,7 @@
                         </div>
 
                         <div id="munSelect" class="col-6 mb-3 d-none">
-                            <label for="municipality" class="col-md-4 col-form-label text-md-start">{{ __('Municipality') }}</label>
+                            <label for="municipality" class=" col-form-label text-md-start">{{ __('Municipality') }}<span class="text-danger"> *</span></label>
 
                             <div class="col-md-6">
                             <select id="municipality" name="municipality" class="form-control form-select @error('municipality') is-invalid @enderror" aria-label="Default select example" required autofocus>
@@ -176,7 +175,7 @@
                         </div>
 
                         <div id="brgySelect" class="col-6 mb-3 d-none">
-                            <label for="brgy" class="col-md-4 col-form-label text-md-start">{{ __('Barangay') }}</label>
+                            <label for="brgy" class=" col-form-label text-md-start">{{ __('Barangay') }}<span class="text-danger"> *</span></label>
 
                             <div class="col-md-6">
                             <select id="brgy" name="brgy" class="form-control form-select @error('brgy') is-invalid @enderror" aria-label="Default select example" required autofocus>
@@ -192,7 +191,7 @@
                         </div>
 
                         <div id="house" class=" col-6 mb-3 d-none">
-                            <label for="house" class="col-md-4 col-form-label text-md-start">{{ __('House and Street Number') }}</label>
+                            <label for="house" class="col-form-label text-md-start">{{ __('House Number and Street ') }}<span class="text-danger"> *</span></label>
 
                             <div class="col-md-6">
                                 <input id="house" type="text" class="form-control @error('house') is-invalid @enderror" name="house" value="" required autofocus>
@@ -213,7 +212,7 @@
                             </div>
                             <div class="row">
                                 <div class="col-6 mb-3">
-                                    <label for="course" class="col-md-4 col-form-label text-md-start">{{ __('Course') }}</label>
+                                    <label for="course" class=" col-form-label text-md-start">{{ __('Course') }}<span class="text-danger"> *</span></label>
 
                                     <div class="">
                                         <input id="course" type="text" class="form-control @error('course') is-invalid @enderror" name="course" value="{{ old('course') }}" required >
@@ -226,7 +225,7 @@
                                     </div>
                                 </div>
                                 <div class="col-6 mb-3">
-                                    <label for="school" class="col-md-4 col-form-label text-md-start">{{ __('School Name') }}</label>
+                                    <label for="school" class="col-form-label text-md-start">{{ __('School Name') }}<span class="text-danger"> *</span></label>
 
                                     <div class="">
                                     <select id="school" name="school" class="form-control form-select @error('course') is-invalid @enderror" aria-label="Default select example" required autofocus>
@@ -253,11 +252,20 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-6 mb-3">
-                                        <label for="income" class="col-md-4 col-form-label text-md-start">{{ __('Monthly Income') }}</label>
+                                        <label for="income" class=" col-form-label text-md-start">{{ __('Monthly Income') }}<span class="text-danger"> *</span></label>
 
                                         <div class="">
-                                            <input id="income" type="number" class="form-control @error('income') is-invalid @enderror" name="income" value="{{ old('income') }}" required >
-
+                                            <!-- <input id="income" type="number" class="form-control @error('income') is-invalid @enderror" name="income" value="{{ old('income') }}" required > -->
+                                            <select id="income" class="form-control form-select @error('income') is-invalid @enderror" name="income" value="{{ old('income') }}" required >
+                                                <option value="" selected disabled>Choose One</option>
+                                                <option value="below 5,000">below 5,000</option>
+                                                <option value="5,000-10,000">5,000-10,000</option>
+                                                <option value="10,000-15,000">10,000-15,000</option>
+                                                <option value="15,000-20,000">15,000-20,000</option>
+                                                <option value="20,000-25,000">20,000-25,000</option>
+                                                <option value="25,000-30,000">25,000-30,000</option>
+                                                <option value="30,000 above">30,000 above</option>
+                                            </select>
                                             @error('income')
                                                 <span class="invalid-feedback" role="alert">
                                                     <strong>{{ $message }}</strong>
@@ -275,7 +283,7 @@
                                     </div>
                                     <div class="row">
                                         <div class="col-6 mb-3">
-                                            <label for="email" class="col-md-4 col-form-label text-md-start">{{ __('Email Address') }}</label>
+                                            <label for="email" class=" col-form-label text-md-start">{{ __('Email Address') }} <span class="text-danger"> *</span></label>
 
                                             <div class="">
                                                 <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
@@ -290,10 +298,12 @@
                                     </div>
                                     <div class="row">
                                         <div class="col-6 mb-3">
-                                            <label for="password" class="col-md-4 col-form-label text-md-start">{{ __('Password') }}</label>
+                                            <label for="password" class=" col-form-label text-md-start">{{ __('Password') }}<span class="text-danger"> *</span></label>
 
                                             <div class="">
                                                 <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
+                                                <h6 class="passerror text-danger d-none">Password does not match</h6>
+                                                <h6 class="passmin text-danger d-none">Minimum of 8 Char</h6>
 
                                                 @error('password')
                                                     <span class="invalid-feedback" role="alert">
@@ -304,18 +314,19 @@
                                         </div>
 
                                         <div class="col-6 mb-3">
-                                            <label for="password-confirm" class="col-md-4 col-form-label text-md-start">{{ __('Confirm Password') }}</label>
-
+                                            <label for="password-confirm" class=" col-form-label text-md-start">{{ __('Confirm Password') }}<span class="text-danger"> *</span></label>
                                             <div class="">
                                                 <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
+                                                <h6 class="passerror text-danger d-none">Password does not match</h6>
+                                               <h6 class="passconmin text-danger d-none">Minimum of 8 Char</h6>
+
                                             </div>
                                         </div>
                                     </div>
                                     <div class="row mb-0 mt-3">
                                         <div class=" justify-content-end d-flex">
-                                            <button type="submit" class="btn btn-primary rounded-0 px-3 ">
-                                                {{ __('Register') }}
-                                            </button>
+                                            <button type="submit" id="submit" class="btn btn-primary rounded-0 px-3 " hidden>{{ __('Register') }} </button>
+                                            <button type="button" id="register" class="btn btn-primary rounded-0 px-3 ">{{ __('Register') }}</button>
                                         </div>
                                     </div>
                                 </div>
@@ -328,6 +339,68 @@
 
 <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
 <script>
+$( "#password" ).keyup(function() {
+    var pass=$('#password').val()
+    var passconfirm=$('#password-confirm').val()
+if (pass.length > 7) {
+    $('.passmin').addClass('d-none');
+}else{
+    $('.passmin').removeClass('d-none');
+}
+if (pass == passconfirm) {
+    console.log('equal');
+    $('.passerror').addClass('d-none');
+}else{
+    $('.passerror').removeClass('d-none');
+}
+});
+$( "#password-confirm" ).keyup(function() {
+    var pass=$('#password').val()
+    var passconfirm=$('#password-confirm').val()
+if (passconfirm.length > 7) {
+    $('.passconmin').addClass('d-none');
+}else{
+    $('.passconmin').removeClass('d-none');
+}
+if (pass == passconfirm) {
+    console.log('equal');
+    $('.passerror').addClass('d-none');
+}else{
+    $('.passerror').removeClass('d-none');
+}
+});
+
+$( "#register" ).click(function() {
+    var pass=$('#password').val()
+    var passconfirm=$('#password-confirm').val()
+    console.log(pass);
+    console.log(passconfirm);
+if (pass.length > 7) {
+    $('.passmin').addClass('d-none');
+}else{
+    $('.passmin').removeClass('d-none');
+}
+if (passconfirm.length > 7) {
+    $('.passconmin').addClass('d-none');
+}else{
+    $('.passconmin').removeClass('d-none');
+}
+if (pass == passconfirm) {
+    console.log('equal');
+    $('.passerror').addClass('d-none');
+}else{
+    $('.passerror').removeClass('d-none');
+}
+
+if (pass == passconfirm && pass.length > 7 && passconfirm.length > 7) {
+    console.log('if');
+    $( "#submit" ).click();
+}else{
+    console.log('else');
+}
+});
+
+
     regionClick();
     provinceClick();
     municipalityClick();

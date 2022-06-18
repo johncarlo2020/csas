@@ -27,7 +27,7 @@ class HomeController extends Controller
     }
     public function staffHome()
     {
-        $users = DB::select("SELECT * FROM csas1.users where user_type_id = 3;");
+        $users = DB::select("SELECT *,TIMESTAMPDIFF(YEAR, birth_date, CURDATE()) AS age FROM csas1.users where user_type_id = 3;");
         $files = DB::select("SELECT * FROM requirements;");
         return view('staff/staffHome',compact('users','files'));
     }
@@ -39,6 +39,10 @@ class HomeController extends Controller
     public function applicantHome()
     {
         return view('applicant/applicantHome');
+    }
+    public function declined()
+    {
+        return view('applicant/declined');
     }
     public function examSchedule(){
         $exams = DB::select("SELECT * FROM csas1.exams;");

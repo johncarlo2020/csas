@@ -34,7 +34,10 @@ class usertype
         if(auth()->user()->user_type_id == 6){
             return $next($request);
         }
+        if(auth()->user()->user_type_id == 7){
+            return $next($request);
+        }
    
-        return redirect(‘home’)->with(‘error’,"You don't have admin access.");
+        return redirect('home')->with('error',"You don't have admin access.");
     }
 }

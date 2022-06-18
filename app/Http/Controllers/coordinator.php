@@ -187,9 +187,9 @@ class coordinator extends Controller
 
     }
 
-    public function examaccepted($id)
+    public function examaccepted(Request $request, $id)
     {
-        // dd('accepted' . $id);
+        dd($request);
 
         $data = [
             'fname'=>'',

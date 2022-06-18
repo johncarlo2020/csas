@@ -57,6 +57,8 @@ class LoginController extends Controller
                 return redirect()->route('staff.home');
             }elseif(auth()->user()->user_type_id == 2){
                 return redirect()->route('coordinator.home');
+            }elseif(auth()->user()->user_type_id == 7){
+                return redirect()->route('applicant.declined');
             }
             elseif(auth()->user()->user_type_id == 3){
                 $id = auth()->user()->id;
@@ -70,6 +72,7 @@ class LoginController extends Controller
                 }
             }
             else{
+                // dd('sadads');
                 return redirect()->route('applicant.home');
             }
         }else{

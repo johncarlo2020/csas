@@ -25,15 +25,17 @@ Route::get('/', function () {
 });
 
 Auth::routes(['verify' => true]);
-
+ 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 Route::get('staff/home', [HomeController::class, 'staffHome'])->name('staff.home')->middleware('user_type');
 Route::get('coordinator/home', [HomeController::class, 'coordinatorHome'])->name('coordinator.home')->middleware('user_type');
 Route::get('applicant/home', [HomeController::class, 'applicantHome'])->name('applicant.home')->middleware('user_type');
+Route::get('applicant/declined', [HomeController::class, 'declined'])->name('applicant.declined')->middleware('user_type');
 
 Route::post('scholar/requirements', 'App\Http\Controllers\scholar@store')->middleware('user_type');
 Route::get('scholar/success', 'App\Http\Controllers\scholar@index')->name('success')->middleware('user_type');
 Route::get('scholar/withfiles', 'App\Http\Controllers\scholar@withfiles')->name('withfiles')->middleware('user_type');
+Route::get('scholar/withoutfiles', 'App\Http\Controllers\scholar@withoutfiles')->name('withoutfiles')->middleware('user_type');
 Route::get('/coordinator/declined', 'App\Http\Controllers\coordinator@index')->name('coordinator.declined')->middleware('user_type');
 Route::get('/coordinator/scholars', 'App\Http\Controllers\coordinator@scholars')->name('coordinator.scholars')->middleware('user_type');
 Route::get('/coordinator/examiners', 'App\Http\Controllers\coordinator@examiners')->name('coordinator.examiners')->middleware('user_type');

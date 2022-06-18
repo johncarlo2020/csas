@@ -38,7 +38,7 @@
                                 </tbody>
                             </table>
                         </div>
-                        <p>You are scheduled to take the exam for the specific date. We are hoping for a good results.</p>
+                        <p>You are scheduled to take the exam for the specific date. Please wear your face mask, bring your own ball pens, and observe physical distancing. We are hoping for a good results.</p>
                         <p class="font-weight-bold mb-0"> Good luck.!</p>
                     </div>
 

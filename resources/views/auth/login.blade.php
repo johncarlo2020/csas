@@ -19,7 +19,7 @@
                         <label for="email" class=" col-form-label ">{{ __('Email Address') }}</label>
                         <div class="input-group mb-3">
                             <span class="input-group-text" id="basic-addon1"><i class="fa-solid fa-user"></i></span>
-                            <input id="email" type="email" placeholder="email@address.com" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+                            <input id="email" type="email" placeholder="example@email.com" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
                           </div>
                         @error('email')
                             <span class="invalid-feedback" role="alert">

@@ -119,7 +119,7 @@ class scholar extends Controller
         return redirect()->route('withfiles');
 
         // return redirect('/scholar/success');
-        }else{
+        }else{ 
         // toastr()->warning($data['name'] .' Id is empty!','Scholar');
         return redirect()->route('withfiles');
 
@@ -129,6 +129,13 @@ class scholar extends Controller
     }
 
     public function withfiles(){
+        $id  = Auth::user()->id;
+        $users = DB::select("SELECT * FROM users where id = $id;");
+        $age = DB::select("SELECT TIMESTAMPDIFF(YEAR, birth_date, CURDATE()) AS age FROM users where id = $id;");
+        $exam = DB::select("SELECT * FROM exams where id = $id;");
+        return view('/applicant.scholarzz',compact('users','exam','age'));
+    }
+    public function withoutfiles(){
         $id  = Auth::user()->id;
         $users = DB::select("SELECT * FROM users where id = $id;");
         $age = DB::select("SELECT TIMESTAMPDIFF(YEAR, birth_date, CURDATE()) AS age FROM users where id = $id;");

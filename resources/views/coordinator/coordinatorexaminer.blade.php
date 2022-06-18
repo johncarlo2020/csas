@@ -7,7 +7,8 @@
 <style>
 
 </style>
-<div class="container " style="padding-top:6em">
+<div class="" style="padding-top:6em; padding-left:3em; padding-right:3em;">
+
     <div class="row justify-content-center">
         <div class="col-md-12">
             <div class="row">
@@ -26,7 +27,7 @@
                         <thead>
                             <tr>
                                 <th>Fullname</th>
-                                <th>Birth Date</th>
+                                <th>Address</th>
                                 <th>School</th>
                                 <th>Action</th>
                             </tr>
@@ -35,7 +36,7 @@
                             @foreach($users as $user)
                             <tr>
                                 <td>{{$user->first_name}} {{$user->middle_name}} {{$user->last_name}}</td>
-                                <td>{{$user->birth_date}}</td>
+                                <td>{{$user->address}}</td>
                                 <td>{{$user->school_name}}</td>
                                 <td>
                                 @foreach($stab as $stb)
@@ -85,18 +86,25 @@
           </div>
           <div class="accept d-none">
               <div class="row text-center py-4">
-                <h5  class="border-remove ">Do you want to accept this Student <span class="name"></span>?</h5>
+                <h5  class="border-remove ">Exam result of <span class="name"></span></h5>
+                <form class="accepted" action="" method="post">
+                @csrf
+                <!-- <input type="id" name="id" value=""> -->
+                <input type="number" class="form-control" name="grade" required autocomplete="email">
+
+
+                </form>
               </div>
               <div class="accept-button d-none row mt-3">
                   <div class="col">
                     <button type="button" class="btn btn-outline-danger rounded-0 w-100" data-bs-dismiss="modal" >No</button>
                   </div>
                   <div class="col">
-                    <a href="" type="button" class="accepted btn btn btn-success rounded-0 w-100">Yes</a>
+                    <a href="" type="button" class=" btn btn btn-success rounded-0 w-100">Yes</a>
                 </div>
               </div>
           </div>
-          <div class="reject d-none">
+          <!-- <div class="reject d-none">
             <div class="row text-center py-4">
                 <h5  class="border-remove ">Do you want to reject this Student <span class="name"></span>?</h5>
               </div>
@@ -108,11 +116,11 @@
                     <a href="" type="button" class="rejected btn btn btn-success rounded-0 w-100">Yes</a>
                 </div>
               </div>
-      </div>
+          </div> -->
       <div class="modal-footer">
           <div class="default">
-            <button type="button" class="btn btn btn-primary rounded-0" onclick="accept()">Accept</button>
-            <button type="button" class="btn btn-outline-danger rounded-0"  onclick="reject()" >Reject</button>
+            <button type="button" class="btn btn btn-primary rounded-0" onclick="accept()">Input Score</button>
+            <!-- <button type="button" class="btn btn-outline-danger rounded-0"  onclick="reject()" >Reject</button> -->
           </div>
       </div>
     </div>
@@ -212,7 +220,7 @@ $(document).ready(function() {
 function accept(){
     var id  = $('.id').text();
     let url = "{{ route('exam.accepted', '/') }}";
-    $(".accepted").attr('href', url+'/'+id).change();
+    $(".accepted").attr('action', url+'/'+id).change();
     $('.modal-title').addClass('d-none');
     $('.student-info').addClass('d-none');
     $('.accept-button').removeClass('d-none');

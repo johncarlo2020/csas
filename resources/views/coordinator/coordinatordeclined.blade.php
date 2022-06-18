@@ -5,7 +5,8 @@
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/2.2.3/css/buttons.dataTables.min.css">
 
 
-<div class="container " style="padding-top:6em">
+<div class="" style="padding-top:6em; padding-left:3em; padding-right:3em;">
+
     <div class="row justify-content-center">
         <div class="col-md-12">
             <div class="row">
@@ -25,7 +26,7 @@
                         <thead>
                             <tr>
                                 <th>Fullname</th>
-                                <th>Birth Date</th>
+                                <th>Address</th>
                                 <th>School</th>
                                 <th>Action</th>
                             </tr>
@@ -34,7 +35,7 @@
                             @foreach($users as $user)
                             <tr>
                                 <td>{{$user->first_name}} {{$user->middle_name}} {{$user->last_name}}</td>
-                                <td>{{$user->birth_date}}</td>
+                                <td>{{$user->address}}</td>
                                 <td>{{$user->school_name}}</td>
                                 <td>
                                     <button id="{{$user->id}}" first_name="{{$user->first_name}}" last_name="{{$user->last_name}}" middle_name="{{$user->middle_name}}" suffix="{{$user->suffix}}" address="{{$user->address}}" age="{{$user->age}}" gender="{{$user->gender}}" birth_date="{{$user->birth_date}}" course="{{$user->course}}" school_name="{{$user->school_name}}" school_address="{{$user->school_address}}" email="{{$user->email}}" income="{{$user->income}}" class="details btn btn-primary" data-bs-toggle="modal" data-bs-target="#detailed">Detailed Info</button>

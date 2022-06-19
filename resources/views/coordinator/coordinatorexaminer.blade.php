@@ -14,7 +14,7 @@
             <div class="row">
                 <div class="col">
                     <a href="{{ route('coordinator.home') }}" class="btn  btn-outline-primary rounded-0">New Applicants</a>
-                    <a href="{{ route('coordinator.examiners') }}" class="btn btn-primary  rounded-0">Examiners</a>
+                    <a href="{{ route('coordinator.examiners') }}" class="btn btn-primary  rounded-0">Examinees</a>
                     <a href="{{ route('coordinator.scholars') }}" class="btn btn-outline-primary  rounded-0">Scholars</a>
                     <a href="{{ route('coordinator.declined') }}" class="btn btn-outline-primary  rounded-0">Declined Applicants</a>
 
@@ -85,21 +85,22 @@
           </div>
           <div class="accept d-none">
               <div class="row text-center py-4">
-                <h5  class="border-remove ">Exam result of <span class="name"></span></h5>
+                <h5  class="border-remove ">Average score of <u><small class="name"></small></u></h5>
                 <form class="accepted" action="" method="post">
                 @csrf
+                @method('post')
                 <!-- <input type="id" name="id" value=""> -->
-                <input type="number" class="form-control" name="grade" required autocomplete="email">
-
-
-                </form>
+                <input type="number" id="grade" class="form-control" name="grade" min="60" max="100" required autocomplete="email">
+                <h6><small class="gradez text-danger d-none">Average score must be 60%-100%</small></h6>
               </div>
               <div class="accept-button d-none row mt-3">
-                  <div class="col">
-                    <button type="button" class="btn btn-outline-danger rounded-0 w-100" data-bs-dismiss="modal" >No</button>
-                  </div>
-                  <div class="col">
-                    <a href="" type="button" class=" btn btn btn-success rounded-0 w-100">Yes</a>
+                <div class="col">
+                  <button type="button" class="btn btn-outline-danger rounded-0 w-100" data-bs-dismiss="modal" >No</button>
+                </div>
+                <div class="col">
+                  <button type="submit" id="submitz" class=" btn btn btn-success rounded-0 w-100" hidden>Yes</button>
+                  <button type="button" id="submit" class=" btn btn btn-success rounded-0 w-100">Yes</button>
+                </form>
                 </div>
               </div>
           </div>
@@ -133,7 +134,31 @@
 <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/buttons/2.2.3/js/buttons.print.min.js"></script>
 <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/buttons/2.2.3/js/buttons.colVis.min.js"></script>
 <script>
+$('#submit').on('click', function(e) {
+  var grade  =  $("#grade").val();
+  if (grade >= 60 && grade <= 100) {
+    console.log('60 plus');
+    $( "#submitz" ).click();
+    $('.gradez').addClass('d-none');
+  }else{
+    console.log('60 less');
+    $('.gradez').removeClass('d-none');
+  }
+});
 
+
+$( "#grade" ).keyup(function() {
+  var grade  =  $("#grade").val();
+  if (grade >= 60 && grade <= 100) {
+    console.log('60 plus');
+    $('.gradez').addClass('d-none');
+  }else{
+    console.log('60 less');
+    $('.gradez').removeClass('d-none');
+  }
+
+
+});
 
 $('.details').on('click', function(e) {
     e.preventDefault();

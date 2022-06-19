@@ -39,7 +39,7 @@
                                 <label for="fname" class=" col-form-label text-md-start">{{ __(' First Name') }}<span class="text-danger"> *</span></label>
 
                                 <div class="">
-                                    <input onkeydown="return /[a-z]/i.test(event.key)" id="fname" type="text" class="form-control @error('fname') is-invalid @enderror" name="fname" value="{{ old('fname') }}" required autocomplete="fname" autofocus>
+                                    <input onkeydown="return /[a-z ]/i.test(event.key)"  id="fname" type="text" class="form-control @error('fname') is-invalid @enderror" name="fname" value="{{ old('fname') }}" required autocomplete="fname" autofocus>
 
                                     @error('name')
                                         <span class="invalid-feedback" role="alert">

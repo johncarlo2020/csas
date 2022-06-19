@@ -49,4 +49,8 @@ class HomeController extends Controller
         return  $exams;
 
     }
+    public function examiner(){
+
+            return view('applicant/examiner');
+        }
 }

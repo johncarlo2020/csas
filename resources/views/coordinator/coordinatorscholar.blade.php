@@ -12,7 +12,7 @@
             <div class="row">
                 <div class="col">
                     <a href="{{ route('coordinator.home') }}" class="btn btn-outline-primary rounded-0">New Applicants</a>
-                    <a href="{{ route('coordinator.examiners') }}" class="btn btn-outline-primary  rounded-0">Examiners</a>
+                    <a href="{{ route('coordinator.examiners') }}" class="btn btn-outline-primary  rounded-0">Examinees</a>
                     <a href="{{ route('coordinator.scholars') }}" class="btn btn-primary rounded-0">Scholars</a>
                     <a href="{{ route('coordinator.declined') }}" class="btn btn-outline-primary rounded-0">Declined Applicants</a>
 
@@ -27,6 +27,7 @@
                                 <th>Fullname</th>
                                 <th>Address</th>
                                 <th>School</th>
+                                <th>Exam score</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -36,6 +37,7 @@
                                 <td>{{$user->first_name}} {{$user->middle_name}} {{$user->last_name}}</td>
                                 <td>{{$user->address}}</td>
                                 <td>{{$user->school_name}}</td>
+                                <td><center>{{$user->score}} %</center></td>
                                 <td>
                                     <button first_name="{{$user->first_name}}" last_name="{{$user->last_name}}" middle_name="{{$user->middle_name}}" suffix="{{$user->suffix}}" address="{{$user->address}}" age="{{$user->age}}" gender="{{$user->gender}}" birth_date="{{$user->birth_date}}" course="{{$user->course}}" school_name="{{$user->school_name}}" school_address="{{$user->school_address}}" email="{{$user->email}}" income="{{$user->income}}" class="details btn btn-primary" data-bs-toggle="modal" data-bs-target="#detailed">Detailed Info</button>
                                     @foreach($files as $file)
@@ -53,7 +55,7 @@
                                                 <div class="modal-body">
                                                 <div class="row  p-3 ">
                                                             <div class="col-lg-4 col-12 border p-2 text-center">
-                                                                <label for="cor" class="col-form-label text-md-right mb-1 h3 fw-bold "> Certificate of Registrar</label>
+                                                                <label for="cor" class="col-form-label text-md-right mb-1 h3 fw-bold "> Certificate of Registration</label>
                                                                 <center><img class="img-fluid rounded mx-auto d-block border p-2 " id="blah" style="max-height: 200px;" height="150px" src="
                                                                 <?php if (getimagesize($file->cor) == false) {echo(asset('images/pdf.webp'));}else{echo(asset($file->cor));}?>
                                                                 " alt="Image Unavailable"></center>

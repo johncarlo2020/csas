@@ -131,9 +131,11 @@ class scholar extends Controller
     public function withfiles(){
         $id  = Auth::user()->id;
         $users = DB::select("SELECT * FROM users where id = $id;");
+        // dd($users);
+        $files = DB::select("SELECT * FROM requirements;");
         $age = DB::select("SELECT TIMESTAMPDIFF(YEAR, birth_date, CURDATE()) AS age FROM users where id = $id;");
         $exam = DB::select("SELECT * FROM exams where id = $id;");
-        return view('/applicant.scholarzz',compact('users','exam','age'));
+        return view('/applicant.scholarzz',compact('users','exam','age','files'));
     }
     public function withoutfiles(){
         $id  = Auth::user()->id;

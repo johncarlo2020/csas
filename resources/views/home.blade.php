@@ -15,7 +15,7 @@
 		        @method('post')
             <div class="row  p-3 ">
                 <div class="col-lg-4 col-12 border p-3">
-                    <label for="cor" class="col-form-label text-md-right mb-1"> Certificate of Registrar<span class="text-danger"> *</span></label>
+                    <label for="cor" class="col-form-label text-md-right mb-1"> Certificate of Registration<span class="text-danger"> *</span></label>
                     <input class="form-control mb-1 btn-primary rounded-0 " type="file" name="cor[]" id="cor" accept="application/pdf,image/*"></input>
                     <small class='text-primary'><center id="corpdf">Accepted file type: PDF,jpeg only</center></small>
                     <small><center class="text-danger d-none" id="corerror">Field cannot be empty!</center></small>

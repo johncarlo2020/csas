@@ -13,7 +13,7 @@
                 <div class="col">
                     <div class="col">
                         <a href="{{ route('coordinator.home') }}" class="btn btn-outline-primary rounded-0">New Applicants</a>
-                        <a href="{{ route('coordinator.scholars') }}" class="btn btn-outline-primary  rounded-0">Examiners</a>
+                        <a href="{{ route('coordinator.scholars') }}" class="btn btn-outline-primary  rounded-0">Examinees</a>
                         <a href="{{ route('coordinator.scholars') }}" class="btn btn-outline-primary  rounded-0">Scholars</a>
                         <a href="{{ route('coordinator.declined') }}" class="btn btn-primary  rounded-0">Declined Applicants</a>
 
@@ -28,6 +28,7 @@
                                 <th>Fullname</th>
                                 <th>Address</th>
                                 <th>School</th>
+                                <th>Exam score</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -37,6 +38,8 @@
                                 <td>{{$user->first_name}} {{$user->middle_name}} {{$user->last_name}}</td>
                                 <td>{{$user->address}}</td>
                                 <td>{{$user->school_name}}</td>
+                                <td><center>{{$user->score}} %</center></td>
+
                                 <td>
                                     <button id="{{$user->id}}" first_name="{{$user->first_name}}" last_name="{{$user->last_name}}" middle_name="{{$user->middle_name}}" suffix="{{$user->suffix}}" address="{{$user->address}}" age="{{$user->age}}" gender="{{$user->gender}}" birth_date="{{$user->birth_date}}" course="{{$user->course}}" school_name="{{$user->school_name}}" school_address="{{$user->school_address}}" email="{{$user->email}}" income="{{$user->income}}" class="details btn btn-primary" data-bs-toggle="modal" data-bs-target="#detailed">Detailed Info</button>
                                     <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#delete{{$user->id}}">Delete</button>

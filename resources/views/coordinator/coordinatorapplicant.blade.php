@@ -11,7 +11,7 @@
             <div class="row">asdasd
                 <div class="col">
                     <a href="{{ route('coordinator.home') }}" class="btn btn-primary">New Applicants</a>
-                    <a href="{{ route('coordinator.scholars') }}" class="btn btn-outline-primary  rounded-0">Examiners</a>
+                    <a href="{{ route('coordinator.scholars') }}" class="btn btn-outline-primary  rounded-0">Examinees</a>
                     <a href="{{ route('coordinator.scholars') }}" class="btn btn-primary">Scholars</a>
                     <a href="{{ route('coordinator.declined') }}" class="btn btn-primary">Declined Applicants</a>
 

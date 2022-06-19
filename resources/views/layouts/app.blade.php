@@ -66,9 +66,17 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                    @if(Auth::user()->user_type_id != 1 and Auth::user()->user_type_id != 2)
-                                    <a class="dropdown-item" href="{{ route('withfiles') }}" > Profile  </a>
-                                    <a class="dropdown-item" href="" > Status  </a>
+                                    @if(Auth::user()->user_type_id != 1 and Auth::user()->user_type_id != 2 and Auth::user()->user_type_id != 7)
+                                        <a class="dropdown-item" href="{{ route('withfiles') }}" > Profile  </a>
+                                        @if(Auth::user()->user_type_id == 7)
+                                            <a class="dropdown-item" href="{{ route('applicant.declined') }}"> Status</a>
+                                        @elseif(Auth::user()->user_type_id == 5)
+                                            <a class="dropdown-item" href="{{ route('applicant.home') }}"> Status  </a>
+                                        @elseif(Auth::user()->user_type_id == 3)
+                                            <a class="dropdown-item" href="{{ route('withfiles') }}"> Status  </a>
+                                        @elseif(Auth::user()->user_type_id == 6)
+                                            <a class="dropdown-item" href="{{ route('applicant.examiner') }}"> Status  </a>
+                                        @endif
                                     @endif
                                     <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"> {{ __('Logout') }}  </a>
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">

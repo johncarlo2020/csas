@@ -5,27 +5,19 @@
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/2.2.3/css/buttons.dataTables.min.css">
 
 
-<div class="container " style="padding-top:6em">
+<div class="" style="padding-top:6em; padding-left:3em; padding-right:3em;">
+
     <div class="row justify-content-center">
         <div class="col-md-12">
-            <div class="row">
-                <div class="col">
-                    <!-- <a href="{{ route('coordinator.home') }}" class="btn btn-outline-primary rounded-0">New Applicants</a>
-                    <a href="{{ route('coordinator.examiners') }}" class="btn btn-outline-primary  rounded-0">Examiners</a>
-                    <a href="{{ route('coordinator.scholars') }}" class="btn btn-primary rounded-0">Scholars</a>
-                    <a href="{{ route('coordinator.declined') }}" class="btn btn-outline-primary rounded-0">Declined Applicants</a> -->
-
-                </div>
-            </div>
             <div class="card mt-4 cardContainer">
-
                 <div class="card-body">
                 <table id="example" class="display table" style="width:100%">
                         <thead>
                             <tr>
                                 <th>Fullname</th>
-                                <th>Birth Date</th>
+                                <th>Address</th>
                                 <th>School</th>
+                                <th>Exam Score</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -33,8 +25,9 @@
                             @foreach($users as $user)
                             <tr>
                                 <td>{{$user->first_name}} {{$user->middle_name}} {{$user->last_name}}</td>
-                                <td>{{$user->birth_date}}</td>
+                                <td>{{$user->address}}</td>
                                 <td>{{$user->school_name}}</td>
+                                <td>{{$user->score}} %</td>
                                 <td>
                                     <button first_name="{{$user->first_name}}" last_name="{{$user->last_name}}" middle_name="{{$user->middle_name}}" suffix="{{$user->suffix}}" address="{{$user->address}}" age="{{$user->age}}" gender="{{$user->gender}}" birth_date="{{$user->birth_date}}" course="{{$user->course}}" school_name="{{$user->school_name}}" school_address="{{$user->school_address}}" email="{{$user->email}}" income="{{$user->income}}" class="details btn btn-primary" data-bs-toggle="modal" data-bs-target="#detailed">Detailed Info</button>
                                     @foreach($files as $file)
@@ -52,7 +45,7 @@
                                                 <div class="modal-body">
                                                 <div class="row  p-3 ">
                                                             <div class="col-lg-4 col-12 border p-2 text-center">
-                                                                <label for="cor" class="col-form-label text-md-right mb-1 h3 fw-bold "> Certificate of Registrar</label>
+                                                                <label for="cor" class="col-form-label text-md-right mb-1 h3 fw-bold "> Certificate of Registration</label>
                                                                 <center><img class="img-fluid rounded mx-auto d-block border p-2 " id="blah" style="max-height: 200px;" height="150px" src="
                                                                 <?php if (getimagesize($file->cor) == false) {echo(asset('images/pdf.webp'));}else{echo(asset($file->cor));}?>
                                                                 " alt="Image Unavailable"></center>

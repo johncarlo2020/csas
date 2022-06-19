@@ -22,6 +22,7 @@
                         <p class="h6  fw-bold legend-details">Montly income</p>
                         <p><b>Amount :          </b>{{$users[0]->income}}</p>
                     </div>
+                    
                 </div>
             </div>
         </div>

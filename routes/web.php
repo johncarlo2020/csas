@@ -30,6 +30,7 @@ Route::get('/home', [HomeController::class, 'index'])->name('home');
 Route::get('staff/home', [HomeController::class, 'staffHome'])->name('staff.home')->middleware('user_type');
 Route::get('coordinator/home', [HomeController::class, 'coordinatorHome'])->name('coordinator.home')->middleware('user_type');
 Route::get('applicant/home', [HomeController::class, 'applicantHome'])->name('applicant.home')->middleware('user_type');
+Route::get('applicant/examiner', [HomeController::class, 'examiner'])->name('applicant.examiner')->middleware('user_type');
 Route::get('applicant/declined', [HomeController::class, 'declined'])->name('applicant.declined')->middleware('user_type');
 
 Route::post('scholar/requirements', 'App\Http\Controllers\scholar@store')->middleware('user_type');
@@ -45,7 +46,7 @@ Route::post('/coordinator/deletes', 'App\Http\Controllers\coordinator@deletes')-
 Route::get('/coordinator/accept/{id}', 'App\Http\Controllers\coordinator@accepted')->name('coordinator.accepted')->middleware('user_type');
 Route::get('/coordinator/accepting/{id}', 'App\Http\Controllers\coordinator@accepting')->name('coordinator.accepting')->middleware('user_type');
 Route::get('/coordinator/reject/{id}', 'App\Http\Controllers\coordinator@rejected')->name('coordinator.rejected')->middleware('user_type');
-Route::get('/coordinator/exam/accept/{id}', 'App\Http\Controllers\coordinator@examaccepted')->name('exam.accepted')->middleware('user_type');
+Route::post('/coordinator/exam/accept/{id}', 'App\Http\Controllers\coordinator@examaccepted')->name('exam.accepted')->middleware('user_type');
 Route::get('/coordinator/exam/reject/{id}', 'App\Http\Controllers\coordinator@examrejected')->name('exam.rejected')->middleware('user_type');
 Route::get('coordinator/applicant', 'App\Http\Controllers\coordinator@applicant')->middleware('user_type');
 

@@ -12,10 +12,14 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
+    <link rel="icon" type="image/png" href="{{ asset('images\logo.png') }}">
+
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css" />
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
@@ -38,6 +42,13 @@
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ms-auto">
+                    @guest
+                    @else
+                    @if(is_null(Auth::user()->picture))
+                    @else
+                    <img class="rounded-circle" style="width:3em;max-height:3em;" alt="10x10" src="{{ asset(Auth::user()->picture) }}">
+                    @endif
+                    @endguest
                         <!-- Authentication Links -->
                         @guest
                             @if (Route::has('login'))
@@ -45,17 +56,17 @@
                                     <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
                                 </li>
                             @endif
-
                             @if (Route::has('register'))
                                 <li class="nav-item">
                                     <a class="nav-link" href="{{ route('register') }}">Pre-Enlistment</a>
                                 </li>
                             @endif
+
                         @else
 
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                
+
                                 @if(Auth::user()->user_type_id == 2)
                                     Coordinator
                                 @elseif(Auth::user()->user_type_id == 1)
@@ -67,15 +78,25 @@
 
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                                     @if(Auth::user()->user_type_id != 1 and Auth::user()->user_type_id != 2 and Auth::user()->user_type_id != 7)
-                                        <a class="dropdown-item" href="{{ route('withfiles') }}" > Profile  </a>
-                                        @if(Auth::user()->user_type_id == 7)
-                                            <a class="dropdown-item" href="{{ route('applicant.declined') }}"> Status</a>
-                                        @elseif(Auth::user()->user_type_id == 5)
-                                            <a class="dropdown-item" href="{{ route('applicant.home') }}"> Status  </a>
+                                        @if(Auth::user()->user_type_id == 6)
+                                            <a class="dropdown-item" href="{{ route('withfiless') }}" > Profile  </a>
                                         @elseif(Auth::user()->user_type_id == 3)
-                                            <a class="dropdown-item" href="{{ route('withfiles') }}"> Status  </a>
+                                            <a class="dropdown-item" href="{{ route('withfilesss') }}" > Profile  </a>
+                                        @else
+                                            <a class="dropdown-item" href="{{ route('withfiles') }}" > Profile  </a>
+                                        @endif
+                                        @if(Auth::user()->user_type_id == 7)
+                                            <a class="dropdown-item" href="{{ route('applicant.declined') }}"> Status </a>
+                                        @elseif(Auth::user()->user_type_id == 5)
+                                            @if (is_null(auth()->user()->email_verified_at))
+                                                <a class="dropdown-item" href="{{ route('verify') }}"> Status </a>
+                                            @else
+                                                <a class="dropdown-item" href="{{ route('applicant.home') }}"> Status </a>
+                                            @endif
+                                        @elseif(Auth::user()->user_type_id == 3 && is_null(Auth::user()->requirements))
+                                            <a class="dropdown-item" href="{{ route('filesz') }}"> Upload Files </a>
                                         @elseif(Auth::user()->user_type_id == 6)
-                                            <a class="dropdown-item" href="{{ route('applicant.examiner') }}"> Status  </a>
+                                            <a class="dropdown-item" href="{{ route('applicant.examiner') }}"> Status </a>
                                         @endif
                                     @endif
                                     <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"> {{ __('Logout') }}  </a>
@@ -95,6 +116,7 @@
             @yield('content')
         </main>
     </div>
+
 
 
     <!-- @jquery -->

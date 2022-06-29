@@ -1,17 +1,21 @@
 @extends('layouts.app')
 @section('content')
-<div class="container pt-5">
+<div class="container pt-5 h-100">
    <div class="row justify-content-center">
       <div class="col-md-8">
          <div class="card "  style="margin-top:5em;">
             <div class="card-header mt-1"><h4> Details</h4></div>
-            
+
             <div class="card-body row">
                <div class="student-info col-12 ">
                    <div class="row">
                         <div class="student-info col-6">
                             <p class="h6 fw-bold legend-details">Personal Information</p>
-                            <p><b>Name :            </b>{{$users[0]->first_name}} {{$users[0]->middle_name}} {{$users[0]->last_name}} , {{$users[0]->suffix}} </p>
+                            <p><b>Name :            </b>{{$users[0]->first_name}} {{$users[0]->middle_name}} {{$users[0]->last_name}}
+                            @if($users[0]->suffix != null)
+                            ,
+                            @endif
+                            {{$users[0]->suffix}} </p>
                             <p><b>Address :         </b>{{$users[0]->address}} </p>
                             <p><b>Age :             </b>{{$age[0]->age}}</p>
                             <p><b>Gender :          </b>{{$users[0]->gender}} </p>
@@ -25,6 +29,8 @@
                             <p><b>School Address :  </b>{{$users[0]->school_address}}</p>
                             <p class="h6  fw-bold legend-details">Montly income</p>
                             <p><b>Amount :          </b>{{$users[0]->income}}</p>
+                            <p class="h6  fw-bold legend-details">Days Scholar</p>
+                            <p><b>Amount :          </b>{{$users[0]->datez}} Days</p>
                         </div>
                     </div>
                </div>

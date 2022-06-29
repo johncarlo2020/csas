@@ -16,6 +16,7 @@ class usertype
      */
     public function handle(Request $request, Closure $next)
     {
+        // dd('usertypemiddleware');
         if(auth()->user()->user_type_id == 1){
             return $next($request);
         }
@@ -38,6 +39,6 @@ class usertype
             return $next($request);
         }
    
-        return redirect('home')->with('error',"You don't have admin access.");
+        return redirect('login')->with('error',"You don't have admin access.");
     }
 }

@@ -9,34 +9,46 @@
 
                 <div class="card-body">
                 {{-- <h2 class="mb-5 mt-2"> Welcome ! {{ Auth::user()->first_name }}</h2> --}}
-
+                    <input id="one" value="0" type="text" hidden>
+                    <input id="two" value="0" type="text" hidden>
+                    <input id="three" value="0" type="text" hidden>
+                    <input id="four" value="0" type="text" hidden>
                 <form action="scholar/requirements" method="post" enctype="multipart/form-data">
                 @csrf
 		        @method('post')
-            <div class="row  p-3 ">
-                <div class="col-lg-4 col-12 border p-3">
+                <div class="row p-3 ">
+                <div class="col border p-3">
                     <label for="cor" class="col-form-label text-md-right mb-1"> Certificate of Registration<span class="text-danger"> *</span></label>
                     <input class="form-control mb-1 btn-primary rounded-0 " type="file" name="cor[]" id="cor" accept="application/pdf,image/*"></input>
                     <small class='text-primary'><center id="corpdf">Accepted file type: PDF,jpeg only</center></small>
                     <small><center class="text-danger d-none" id="corerror">Field cannot be empty!</center></small>
+                    <small><center class="text-primary " id="corz">File size must be less than 5mb!</center></small>
                     <center><img class="img-fluid rounded mx-auto d-block d-none" id="blah" style="max-height: 200px;" height="150px" src='' alt="Image Unavailable"></center>
-
                 </div>
-                <div class="col-lg-4 col-12  border  p-3">
+                <div class="col border p-3">
                     <label for="cog" class="col-form-label text-md-right mb-1">Certificate of Grades<span class="text-danger"> *</span></label>
                     <input  class="form-control mb-1 mb-1 btn-primary rounded-0 " type="file" name="cog[]" id="cog" accept="application/pdf,image/*">
                     <small class='text-primary'><center id="cogpdf">Accepted file type: PDF,jpeg only</center></small>
                     <small><center class="text-danger  d-none" id="cogerror">Field cannot be empty!</center></small>
+                    <small><center class="text-primary " id="cogz">File size must be less than 5mb!</center></small>
                     <center><img class="img-fluid rounded mx-auto d-block d-none" id="cogimage" style="max-height: 200px;" height="150px" src='' alt="Image Unavailable"></center>
-
                 </div>
-                <div class="col-lg-4 col-12  border  p-3">
+                <div class="row p-3 ">
+                <div class="col-6 border p-3">
                     <label for="id" class="col-form-label text-md-right mb-1">ID<span class="text-danger"> *</span></label>
                     <input class="form-control mb-1 mb-1 btn-primary rounded-0 " type="file" name="id[]" id="id" accept="application/pdf,image/*">
                     <small class='text-primary'><center id="idpdf">Accepted file type: PDF,jpeg only</center></small>
                     <small><center class="text-danger  d-none" id="iderror">Field cannot be empty!</center></small>
+                    <small><center class="text-primary " id="idz">File size must be less than 5mb!</center></small>
                     <center><img class="img-fluid rounded mx-auto d-block d-none" id="idimage" style="max-height: 200px;" height="150px" src='' alt="Image Unavailable"></center>
-
+                </div>
+                <div class="col-6 border p-3">
+                    <label for="id" class="col-form-label text-md-right mb-1">Profile Picture<span class="text-danger"> *</span></label>
+                    <input class="form-control mb-1 mb-1 btn-primary rounded-0" type="file" name="pic[]" id="pic" accept="image/*">
+                    <small class='text-primary'><center id="picpdf">Accepted file type: Image only</center></small>
+                    <small><center class="text-danger  d-none" id="picerror">Field cannot be empty!</center></small>
+                    <small><center class="text-primary " id="picz">File size must be less than 5mb!</center></small>
+                    <center><img class="img-fluid rounded mx-auto d-block d-none" id="picimage" style="max-height: 200px;" height="150px" src='' alt="Image Unavailable"></center>
                 </div>
             </div>
             <div class="justify-content-center " >
@@ -84,9 +96,55 @@
 
 <script>
 
-
-    cor.onchange = evt => {
+    pic.onchange = evt => {
         console.log('gagana');
+
+        const [filez] = pic.files
+        console.log(pic.files[0].size);
+        if(pic.files[0].size < 5000000){
+            console.log('maliit');
+            $('#four').attr('value', '0');
+            // $('#corz').addClass('d-none');
+        }else{
+            console.log('malaki');
+            $('#four').attr('value', '1');
+            // $('#corz').removeClass('d-none');
+        }
+
+        var mimeType=pic.files[0]['type'];
+         const [file] = pic.files
+         if(mimeType.split('/')[0] === 'image'){
+            $('#picimage').removeClass('d-none');
+            $('#picpdf').addClass('d-none');
+            $('#corpdf').addClass('d-none');
+            picimage.src = URL.createObjectURL(file)
+            console.log('gagana');
+        }else{
+            $('#picimage').removeClass('d-none');
+            $('#picerror').addClass('d-none');
+            $('#picpdf').addClass('d-none');
+            picimage.src = 'images/pdf.webp';
+            console.log('gagana');
+        }
+      }
+
+
+
+      cor.onchange = evt => {
+        console.log('gagana');
+
+        const [filez] = cor.files
+        console.log(cor.files[0].size);
+        if(cor.files[0].size < 5000000){
+            console.log('maliit');
+            $('#one').attr('value', '0');
+            // $('#corz').addClass('d-none');
+        }else{
+            console.log('malaki');
+            $('#one').attr('value', '1');
+            // $('#corz').removeClass('d-none');
+        }
+
         var mimeType=cor.files[0]['type'];
          const [file] = cor.files
          if(mimeType.split('/')[0] === 'image'){
@@ -104,6 +162,19 @@
         }
       }
       cog.onchange = evt => {
+
+        const [filez] = cog.files
+        console.log(cog.files[0].size);
+        if(cog.files[0].size < 5000000){
+            console.log('maliit');
+            // $('#cogz').addClass('d-none');
+            $('#two').attr('value', '0');
+        }else{
+            console.log('malaki');
+            $('#two').attr('value', '1');
+            // $('#cogz').removeClass('d-none');
+        }
+
         console.log('gagana');
          const [file] = cog.files
          var mimeType=cog.files[0]['type'];
@@ -122,6 +193,19 @@
          }
       }
       id.onchange = evt => {
+
+        const [filez] = id.files
+        console.log(id.files[0].size);
+        if(id.files[0].size < 5000000){
+            console.log('maliit');
+            $('#three').attr('value', '0');
+            // $('#idz').addClass('d-none');
+        }else{
+            console.log('malaki');
+            // $('#idz').removeClass('d-none');
+            $('#three').attr('value', '1');
+        }
+
         console.log('gagana');
          const [file] = id.files
          var mimeType=id.files[0]['type'];
@@ -145,6 +229,11 @@
         var cog = $("#cog")[0].files.length;
         var cor = $("#cor")[0].files.length;
         var id  = $("#id")[0].files.length;
+        var pic  = $("#pic")[0].files.length;
+        var one  = $('#one').val();
+        var two = $('#two').val();
+        var three = $('#three').val();
+        var four = $('#four').val();
 
         if (cor < 1) {
             $('#corerror').removeClass('d-none');
@@ -156,6 +245,11 @@
          }else{
             $('#cogerror').addClass('d-none');
          }
+         if (pic < 1) {
+            $('#picerror').removeClass('d-none');
+         }else{
+            $('#picerror').addClass('d-none');
+         }
         if (id < 1) {
             $('#iderror').removeClass('d-none');
          }else{
@@ -166,24 +260,13 @@
         }else{
              $('#checkerror').removeClass('d-none');
          }
-
-        if(cor > 0 && cog > 0 && id > 0 && $('input[name="checkbox"]').is(':checked')){
+        if(cor > 0 && cog > 0 && pic > 0 && id > 0 && $('input[name="checkbox"]').is(':checked') && one == 0 && two == 0 && three == 0 && four == 0){
         console.log('works');
-        // $( "#submits" ).click();
         $( ".modalz" ).click();
          }else{
         console.log('di');
          }
    });
-
-
-//    cor.onchange = evt => {
-//     const [file] = cor.files
-//     if(cor.files[0].size > 0){
-//         console.log('works');
-//          }
-//     }
-
 
 
 

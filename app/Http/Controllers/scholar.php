@@ -20,6 +20,13 @@ class scholar extends Controller
     {
         // dd('scholarcontroller');
         return view('success');
+        
+    }
+    public function verify()
+    {
+        // dd('scholarcontroller');
+        return view('auth/verify');
+        
     }
 
     /**
@@ -27,9 +34,10 @@ class scholar extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function scholarhome()
     {
-        //
+        return view('applicant.scholarhome');
+
     }
 
     /**
@@ -44,7 +52,7 @@ class scholar extends Controller
         $user  = Auth::user()->id;
         $name  = Auth::user()->first_name . Auth::user()->middle_name . Auth::user()->last_name; 
         $exist = DB::select("select * from requirements where id = $user");
-        // dd($exist);
+        // dd('asdasd');
 
         // $exist = $exist[0]->id;
         // dd('walang laman');
@@ -64,7 +72,26 @@ class scholar extends Controller
         $cog                = $request -> file('cog');
         $id                 = $request -> file('id');
         $cor                = $request -> file('cor');
-        // dd($cor);   
+        $pic                = $request -> file('pic');
+        // dd($pic);   
+        if ($pic != null) {
+            $files         = $request -> file('pic');
+            $file          = $files[0]->getClientOriginalName();
+            $file = explode(".", $file);
+            $file = end($file);
+            // dd($file);
+            $imagename      = $name . '_PIC.' . $file;
+            $path           = 'files/scholars/'.$user;
+            $data['file']  = $path."/".$imagename;
+            File::deleteDirectory(public_path($path));
+            foreach ($files as $file) {
+                $file -> move($path , $imagename);  
+                $pat = $path .'/'. $imagename;
+            }
+            // dd($pat);
+        $exist = DB::select("UPDATE users SET picture='$pat' WHERE id=$user");
+        }else{
+        }
         if ($cor != null) {
             $files         = $request -> file('cor');
             $file          = $files[0]->getClientOriginalName();
@@ -73,16 +100,12 @@ class scholar extends Controller
             // dd($file);
             $imagename      = $name . '_COR.' . $file;
             $path           = 'files/scholars/'.$user;
-            $data['file']  = $path."/".$imagename;
-            File::deleteDirectory(public_path($path));
                 foreach ($files as $file) {
                     $file -> move($path , $imagename);  
                     $pat = $path .'/'. $imagename;
                 }
         $exist = DB::select("UPDATE requirements SET cor='$pat' WHERE id=$user");
-        // toastr()->success($data['name'] .' Added Successfully!','Menu');
         }else{
-        // toastr()->warning($data['name'] .' Cor is empty!','Scholar');
         }
         if ($cog != null) {
             $files         = $request -> file('cog');
@@ -96,11 +119,8 @@ class scholar extends Controller
                     $file -> move($path , $imagename);  
                     $pat = $path .'/'. $imagename;
                     $exist = DB::select("UPDATE requirements SET cog='$pat' WHERE id=$user ");
-
                 }
-        // toastr()->success($data['name'] .' Added Successfully!','Menu');
         }else{
-        // toastr()->warning($data['name'] .' Cog is empty!','Scholar');
         }
         if ($id != null) {
             $files         = $request -> file('id');
@@ -115,13 +135,14 @@ class scholar extends Controller
                 }
                 $pat = $path .'/'. $imagename;
         $exist = DB::select("UPDATE requirements SET id_='$pat' WHERE id=$user ");
+        $exist = DB::select("UPDATE users SET requirements=1 WHERE id=$user ");
         toastr()->success('Record Updated Successfully','Scholar Requirements');
-        return redirect()->route('withfiles');
+        return redirect()->route('withfilesss');
 
         // return redirect('/scholar/success');
         }else{ 
         // toastr()->warning($data['name'] .' Id is empty!','Scholar');
-        return redirect()->route('withfiles');
+        return redirect()->route('withfilesss');
 
         // return redirect('/scholar/success');
         }
@@ -130,13 +151,14 @@ class scholar extends Controller
 
     public function withfiles(){
         $id  = Auth::user()->id;
-        $users = DB::select("SELECT * FROM users where id = $id;");
+        $users = DB::select("SELECT *,DATEDIFF(CURDATE(), date(updated_at)) as 'datez' FROM users where id = $id;");
         // dd($users);
         $files = DB::select("SELECT * FROM requirements;");
         $age = DB::select("SELECT TIMESTAMPDIFF(YEAR, birth_date, CURDATE()) AS age FROM users where id = $id;");
         $exam = DB::select("SELECT * FROM exams where id = $id;");
         return view('/applicant.scholarzz',compact('users','exam','age','files'));
     }
+    
     public function withoutfiles(){
         $id  = Auth::user()->id;
         $users = DB::select("SELECT * FROM users where id = $id;");
